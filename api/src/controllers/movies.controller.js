@@ -2,20 +2,21 @@ import MoviesService from "../services/movies.service.js";
 
 function findProducers(data) {
     const producers = {};
+    const max = {};
+    const min = {};
+    let maxInterval = -Infinity; 
+    let minInterval = Infinity;  
 
     data.forEach(item => {
         if (item.winner === "yes") {
-            if (!producers[item.producers]) {
-                producers[item.producers] = [];
-            }
-            producers[item.producers].push(item.year);
+            let parts = [];
+            parts = [...item.producers.split(/,|\s+and\s+/)];
+            parts.forEach(part => {
+                if (!!part.trim() && !producers[part.trim()]) producers[part.trim()] = [];
+                if (!!producers[part.trim()]) producers[part.trim()].push(item.year);
+            });
         }
     });
-
-    let maxIntervalProducer = null;
-    let maxInterval = -Infinity; 
-    let minIntervalProducer = null;
-    let minInterval = Infinity;  
 
     for (let producer in producers) {
         const years = producers[producer].sort((a, b) => a - b); 
@@ -26,39 +27,35 @@ function findProducers(data) {
 
                 if (interval > maxInterval) {
                     maxInterval = interval;
-                    maxIntervalProducer = producer;
+                    max.producer = producer;
+                    max.interval = interval;
+                    max.previousWin = producers[producer][0];
+                    max.followingWin = producers[producer][producers[producer].length -1];
                 }
 
                 if (interval < minInterval) {
                     minInterval = interval;
-                    minIntervalProducer = producer;
+                    min.producer = producer;
+                    min.interval = interval;
+                    min.previousWin = producers[producer][0];
+                    min.followingWin = producers[producer][producers[producer].length -1];
                 }
             }
         }
     }
 
     return {
-        maxIntervalProducer,
-        maxInterval,
-        minIntervalProducer,
-        minInterval
+        min,
+        max
     };
 }
 
 async function getMovies(req, res, next){
     try {
-
         const result = findProducers(await MoviesService.getMovies())
 
-        // res.send(findProducers(await MoviesService.getMovies()));
-
-        
-        res.send({titulos:[{maior: result.maxIntervalProducer,
-                  intervalo: result.maxInterval},
-                  {menor: result.minIntervalProducer,
-                  intervalo: result.minInterval}]});
-
-        // res.send(await MoviesService.getMovies());
+        //fazer algum retorno para caso nao venham dados
+        res.send(result);
     } catch (err) {
         next(err);
     }
