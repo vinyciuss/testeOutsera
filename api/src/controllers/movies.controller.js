@@ -53,8 +53,7 @@ function findProducers(data) {
 async function getMovies(req, res, next){
     try {
         const result = findProducers(await MoviesService.getMovies())
-
-        //fazer algum retorno para caso nao venham dados
+        if(!Object.keys(result.min).length && !Object.keys(result.max).length) return res.status(204).send();
         res.send(result);
     } catch (err) {
         next(err);
