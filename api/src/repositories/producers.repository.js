@@ -1,6 +1,6 @@
 import db from "../db/db.js";
 
-async function getMovies(){
+async function getProducers(){
     try{
         return db.prepare('SELECT * FROM movies').all();
     } catch (err) {
@@ -9,5 +9,5 @@ async function getMovies(){
 }
 
 export default {
-    getMovies
+    getProducers
 }

@@ -1,4 +1,4 @@
-import MoviesService from "../services/movies.service.js";
+import ProducersService from "../services/producers.service.js";
 
 function findProducers(data) {
     const producers = {};
@@ -50,9 +50,9 @@ function findProducers(data) {
     };
 }
 
-async function getMovies(req, res, next){
+async function getProducers(req, res, next){
     try {
-        const result = findProducers(await MoviesService.getMovies())
+        const result = findProducers(await ProducersService.getProducers())
         if(!Object.keys(result.min).length && !Object.keys(result.max).length) return res.status(204).send();
         res.send(result);
     } catch (err) {
@@ -61,5 +61,5 @@ async function getMovies(req, res, next){
 }
 
 export default {
-    getMovies
+    getProducers
 }

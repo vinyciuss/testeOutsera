@@ -1,5 +1,5 @@
 const supertest = require('supertest');
-const request = supertest('http://localhost:3000/worse_movies');
+const request = supertest('http://localhost:3000/winning_producers');
 
 describe("Deve ser possível obter os produtores premiados", () => {
     test("Retorna o produtor que obteve 2 prêmios mais rápido", async () => {

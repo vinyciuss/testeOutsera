@@ -8,16 +8,18 @@
 <p>O projeto consiste em obter o produtor com maior intervalo entre dois prêmios e o que obteve dois prêmios de forma mais rápida. O projeto é constituído por um arquivo .csv que é disponibilizado para execução do teste, o mesmo deve ser importado assim que a API é iniciada e os dados inseridos num banco de dados em memória.</p>
 
 --
-<p>OBS: Ao analisar os dados e fazer os primeiros testes, percebi que o retorno não estava adequado, sendo muito simples para a proposta do teste, já que somente 1 producer se repetia na estrutura atual e que os demais 'producers' se repetiam nos campos onde tinha mais de um producer por linha, sendo assim, "extrai" os mesmos da sua forma aglutinada e os separei para obter um melhor resultado.
+<p>OBS: Ao analisar os dados e fazer os primeiros testes, percebi que o retorno não estava adequado, sendo muito simples para a proposta do teste, já que somente 1 producer se repetia na estrutura atual e que os demais 'producers' se repetiam nos campos onde tinha mais de um producer por linha, sendo assim, "extrai" os mesmos da sua forma aglutinada e os separei para obter um melhor resultado.</p>
 
--Outro ponto relevante é que no exemplo do formato a ser seguido pelo retorno da API se econtram 2 possíveis producers para "min" e "max", até mesmo dentro de um array. Levei em consideração apenas o formato da estrutura e atendi o critério do teste é que era retonar de forma singular, 1 produtor com maior intervalo e 1 com menor intervalo.<p>
+<p>-Outro ponto relevante é que no exemplo do formato a ser seguido pelo retorno da API se econtram 2 possíveis producers para "min" e "max", até mesmo dentro de um array. Levei em consideração apenas o formato da estrutura e atendi o critério do teste é que era retonar de forma singular, 1 produtor com maior intervalo e 1 com menor intervalo.</p>
 
+
+<p>-Meu último commit reflete a troca dos nomes de 'movies' para 'producers' atendendo mais adequadamente os padrões solicitados, inicialmente optei por movies pelo contexto do nome do arquivo disponibilizado e tabela. Inicialmente havia pensado em mudar somente o nome da rota, mas ficaria um pouco discrepante em relação aos arquivos.</p>
 <br>
 
 <h2>Rotas disponíveis</h2>
 
 <ul>
-<li>GET /worse_movies</li>
+<li>GET /winning_producers</li>
 </ul>
 
 <h2>Execução da aplicação</h2>
