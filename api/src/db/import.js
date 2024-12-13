@@ -2,8 +2,9 @@ import fs from 'fs';
 import csvParser from'csv-parser';
 import db from './db.js';
 
-export default async function importCsvToDb(filePath) {
+export default async function importCsvToDb(filePath, destinationPath) {
   const insertStmt = db.prepare('INSERT INTO movies (year, title, studios, producers, winner) VALUES (?, ?, ?, ?, ?)');
+  fs.copyFileSync(filePath, destinationPath);
 
   return new Promise((resolve, reject) => {
     const results = [];
