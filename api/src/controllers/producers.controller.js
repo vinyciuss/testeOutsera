@@ -2,8 +2,8 @@ import ProducersService from "../services/producers.service.js";
 
 function findProducers(data) {
     const producers = {};
-    const max = {};
-    const min = {};
+    let max = [];
+    let min = [];
     let maxInterval = -Infinity; 
     let minInterval = Infinity;  
 
@@ -27,18 +27,44 @@ function findProducers(data) {
 
                 if (interval > maxInterval) {
                     maxInterval = interval;
-                    max.producer = producer;
-                    max.interval = interval;
-                    max.previousWin = producers[producer][0];
-                    max.followingWin = producers[producer][producers[producer].length -1];
+                    max = [
+                        {
+                            producer: producer,
+                            interval: interval,
+                            previousWin: years[i - 1],
+                            followingWin: years[i]
+                        }
+                    ];
+                } else if (interval === maxInterval) {
+                    if (max.length < 2) {
+                        max.push({
+                            producer: producer,
+                            interval: interval,
+                            previousWin: years[i - 1],
+                            followingWin: years[i]
+                        });
+                    }
                 }
-
+                
                 if (interval < minInterval) {
                     minInterval = interval;
-                    min.producer = producer;
-                    min.interval = interval;
-                    min.previousWin = producers[producer][0];
-                    min.followingWin = producers[producer][producers[producer].length -1];
+                    min = [
+                        {
+                            producer: producer,
+                            interval: interval,
+                            previousWin: years[i - 1],
+                            followingWin: years[i]
+                        }
+                    ];
+                } else if (interval === minInterval) {
+                    if (min.length < 2) {
+                        min.push({
+                            producer: producer,
+                            interval: interval,
+                            previousWin: years[i - 1],
+                            followingWin:  years[i]
+                        });
+                    }
                 }
             }
         }
