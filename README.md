@@ -12,8 +12,6 @@
 
 <p>-Outro ponto relevante é que no exemplo do formato a ser seguido pelo retorno da API se econtram 2 possíveis producers para "min" e "max", até mesmo dentro de um array. Levei em consideração apenas o formato da estrutura e atendi o critério do teste é que era retonar de forma singular, 1 produtor com maior intervalo e 1 com menor intervalo.</p>
 
-
-<p>-Meu último commit reflete a troca dos nomes de 'movies' para 'producers' atendendo mais adequadamente os padrões solicitados, inicialmente optei por movies pelo contexto do nome do arquivo disponibilizado e tabela. Inicialmente havia pensado em mudar somente o nome da rota, mas ficaria um pouco discrepante em relação aos arquivos.</p>
 <br>
 
 <h2>Rotas disponíveis</h2>
